@@ -45,6 +45,3 @@ bottleneck = "*"
 python-dotenv = "*"
 pip = "*"
 git = "*"
-
-[pypi-dependencies]
-trajan = { git = "https://github.com/OpenDrift/trajan.git" }
