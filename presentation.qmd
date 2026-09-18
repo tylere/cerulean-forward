@@ -1,0 +1,236 @@
+---
+title: "Cerulean Forward"
+subtitle: "Enabling Prediction and Improving Attribution<br/>via Integration with Probabilistic Particle Tracking Models"
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    view-distance: 10
+    preload-iframes: false
+    smaller: true
+    navigation-mode: grid
+    center: false
+    margin: 0.1
+    css: presentation.css
+---
+
+
+# The Opportunity {style="& p { margin: 0.3em 0; }"}
+
+SkyTruth's Cerulean system detects oil slicks globally using Sentinel-1 SAR imagery and matches them to potential sources.
+
+![](https://skytruth.org/wp-content/uploads/2025/05/asa_vessel_graphic_v5_edit-2048x482.jpg){width=60%}
+
+Currently matching is based on heuristic metrics of **parity, proximity, & temporality** — effective for linear slicks under uniform conditions. But many slicks have complex geometries due to variable current and wind transport.
+
+![](https://skytruth.org/wp-content/uploads/2023/12/true_positives2.svg){height=220}
+
+::: {.notes}
+- The Cerulean system uses simple heuristics
+- Many slicks don't exhibit linear shapes
+- **Opportunity** for better results using a more rigorous modeling approach
+:::
+
+
+# The Idea
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**Couple Cerulean oil slick detections<br/>with a particle tracking model<br/>to generate spatial/temporal probability fields<br/>both forward and backward in time.**
+
+- Forecast near-term slick evolution<br/>*(forward tracking)*
+- Improve source attribution<br/>*(backward tracking)*
+:::
+
+::: {.column width="45%"}
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<img src="outputs/drift_combined-4603914.gif" style="max-height: 700px;">
+</div>
+:::
+
+::::
+
+::: {.notes}
+- Couple oil slick detections with a physics-based, data-driven particle tracking model
+- Allows for **forecasting** the future
+- **and** improving source attribution
+:::
+
+# Who Could This Help?
+
+:::: {.columns}
+
+::: {.column width="55%"}
+<br/>
+
+**New user groups** that would utilize forecasted oil slick movement / fate
+
+- **Oil Spill Response Orgs**
+- **Environmental Litigators**
+- **Academic Researchers**
+
+<br/>
+**Existing user groups** that would benefit from improved source attribution
+
+- **Enforcement Orgs**
+- **Investigative Journalists**
+- **Policy Advocacy Orgs**
+:::
+
+::: {.column width="45%"}
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<img src="images/Harbour_Buster_high-speed_oil_containment_system.jpg" style="max-height: 285px;">
+</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Deepwater_Horizon_oil_spill_-_May_24%2C_2010_-_with_locator.jpg" style="max-height: 270px;">
+</div>
+:::
+
+::::
+
+::: {.notes}
+- New users!
+- Strengthen existing use cases!
+- Images: U.S. Navy (released), NASA (public domain)
+:::
+
+# System Architecture
+
+![](images/cerulean_enhancement_data_flowchart.png){fig-align="center" width=100%}
+
+::: {.notes}
+- Existing system on the left
+- Feed a particle tracking model with current and wind fields
+- Run the model forward and backward in time
+- Output probability fields at each time step
+- Particles would be aggregated into probability fields
+:::
+
+
+# Why now?
+
+<br/>
+
+- **Cerulean Oil Slick Detection**<br/>
+  - late 2024 - Version 1 released
+- **OpenDrift / OpenOil**
+  - particle tracking framework / oil physics module is in operational use
+- **High-resolution Ocean Data**
+  - 2019 - Copernicus Marine Service (CMEMS) SMOC (Surface Merged Ocean Current)
+  - 2025-2026 - Recent advances in Earth system modeling with ML/deep learning and cloud optimized data repositories
+
+
+# How feasible is this?
+
+A few experiments with [OpenDrift](https://opendrift.github.io/) driven by hourly CMEMS surface currents,
+seeded from Cerulean slick geometries and run 24 h forward and backward.
+
+See [`opendrift.ipynb`](https://github.com/tylere/cerulean-forward/blob/main/opendrift.ipynb).
+
+## Slick 4603914 (North Sea)
+
+:::: {.columns}
+
+::: {.column width="40%"}
+<iframe src="https://cerulean.skytruth.org/slicks/4603914" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+:::
+
+::: {.column width="60%"}
+::::: {.fragment}
+![](outputs/drift_combined-4603914.gif)
+:::::
+:::
+
+::::
+
+::: {.notes}
+- [ZOOM OUT to SHOW WHERE]
+- FORWARD (blue) Part of the slick washes ashore
+- BACKWARD (red) It seems to match up well with the AIS track. And bunches up.
+- Some of the geometries don't seem to be connected... maybe they could be removed?
+:::
+
+## Slick 4603914 (North Sea)
+
+![](outputs/drift_trajectories-4603914.png){fig-align="center" width=100%}
+
+
+
+## Slick 4247543 (North Sea)
+
+:::: {.columns}
+
+::: {.column width="40%"}
+<iframe src="https://cerulean.skytruth.org/slicks/4247543" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+:::
+
+::: {.column width="60%"}
+![](outputs/drift_combined-4247543.gif)
+:::
+
+::::
+
+::: {.notes}
+- More complex slick shape.
+- On a different day, and you can see the effects of shifting currents and winds.
+- Unlike the previous slick, this one stays elongated when moving backward in time. Prolonged release? Started >24 hours ago?
+:::
+
+## Slick 4247543 (North Sea)
+
+![](outputs/drift_trajectories-4247543.png){fig-align="center" width=100%}
+
+
+## Slick 4245242 (Near Taiwan)
+
+:::: {.columns}
+
+::: {.column width="35%"}
+<iframe src="https://cerulean.skytruth.org/slicks/4245242" width="100%" height="600" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+:::
+
+::: {.column width="65%"}
+![](outputs/drift_combined-4245242.gif)
+:::
+
+::::
+
+
+::: {.notes}
+- Oil slick near Taiwan
+    - *[Zoom out in the IFrame]*
+- Transport is more uniform, although you can still see the geometry changing.
+- **Cerulean matched this slick with two vessels.**
+- Which vessel is more likely?
+  - Red matches up well with the ship moving closer to shore.
+:::
+
+## Slick 4245242 (Near Taiwan)
+
+![](outputs/drift_trajectories-4245242.png){fig-align="center" width=100%}
+
+::: {.notes}
+- Transport is pretty uniform in time, but you can see the geometry changing.
+:::
+
+# Risks & Mitigations
+
+| Risk | Impact | Mitigation |
+| --- | --- | --- |
+| Insufficient "ground truth" /  benchmark data | Cannot validate model performance | Use subsequent Cerulean observations to validate model performance |
+| Insufficient input data resolution/accuracy | Local transport not captured | Evaluate regional models; tune diffusion |
+| System latency | Not feasible for decision-making | AIS delay dominates; model runs are minutes per slick |
+| Model complexity / flexibility | Easy to criticize model performance | Tune based on rigorous benchmark data |
+| External dependency on particle tracking model | Model dependency | Focus on open source models; research switching costs |
+| External dependency on data service | Data dependency | Research alternative data sources & switching costs |
+
+# Questions?
+
+<div style="display: flex; align-items: center; justify-content: center; height: calc(100vh - 200px);">
+<div style="display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 1em;">
+<img src="images/Cerulean_small.png" style="max-height: 400px; max-width: 35%; vertical-align: middle;">
+<span style="font-size: 3em; font-weight: bold; vertical-align: middle;">+</span>
+<img src="outputs/drift_combined-4245242.gif" style="max-height: 400px; max-width: 45%; vertical-align: middle;">
+</div>
+</div>

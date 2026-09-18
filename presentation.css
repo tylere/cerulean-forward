@@ -1,0 +1,23 @@
+.reveal section:not(#title-slide) > h1 {
+  font-size: 1.8em !important;
+  margin-bottom: 0.6em;
+}
+
+.reveal {
+  font-size: 40px;
+}
+
+.reveal .slides section {
+  top: 0 !important;
+  vertical-align: top;
+}
+
+.reveal .slides section#title-slide {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.reveal .slide figure,
+.reveal .slide p:has(> img) {
+  text-align: center;
+}

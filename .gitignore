@@ -1,0 +1,17 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Quarto render artifacts
+/.quarto/
+presentation.html
+presentation_files/
+**/*.quarto_ipynb
+
+# Derived in the notebook from data/*.geo.json
+outputs/*.gpkg
+
+.DS_Store
