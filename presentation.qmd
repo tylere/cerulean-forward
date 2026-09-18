@@ -19,11 +19,11 @@ format:
 
 SkyTruth's Cerulean system detects oil slicks globally using Sentinel-1 SAR imagery and matches them to potential sources.
 
-![](https://skytruth.org/wp-content/uploads/2025/05/asa_vessel_graphic_v5_edit-2048x482.jpg){width=60%}
+![](https://cdn.prod.website-files.com/69f0b3ef8d75d8ba0f4cbc45/6a45485825675d0ccfb9e36f_PotentialSources1.webp){height=260}
 
-Currently matching is based on heuristic metrics of **parity, proximity, & temporality** — effective for linear slicks under uniform conditions. But many slicks have complex geometries due to variable current and wind transport.
+Currently matching is based on heuristic metrics of **parity, proximity, & temporality** — effective for linear slicks under uniform conditions. But many slicks have complex geometries due to variable current and wind transport, as shown in the [Cerulean guide](https://skytruth.org/cerulean/guide-slick-details).
 
-![](https://skytruth.org/wp-content/uploads/2023/12/true_positives2.svg){height=220}
+![](https://cdn.prod.website-files.com/69f0b3ef8d75d8ba0f4cbc45/6a429b448aca1e9843de9ca3_SlickGuide4.webp){height=260}
 
 ::: {.notes}
 - The Cerulean system uses simple heuristics

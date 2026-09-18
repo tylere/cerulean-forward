@@ -15,7 +15,7 @@ potential sources (vessels via AIS, and fixed infrastructure) using heuristic me
 of parity, proximity, and temporality. Those heuristics work well for linear slicks
 produced under uniform current and wind conditions. Many slicks are not linear:
 variable currents and winds fold and stretch them, as illustrated in the
-[Cerulean Slick Identification Guide](https://skytruth.org/cerulean_slick_identification_guide/).
+[Cerulean guide](https://skytruth.org/cerulean/guide-slick-details).
 
 A physics-based transport model can complement the heuristics:
 
